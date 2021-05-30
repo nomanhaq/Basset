@@ -1,12 +1,19 @@
 
 // SPDX-License-Identifier: MIT
 
+/**
+* PFZER COIN (PFZR)
+*/
+
 pragma solidity ^0.8.0;
 
 
 abstract contract Context {
     function _msgSender() internal view virtual returns (address) {
         return msg.sender;
+        //return 0xc140dEe407e97f56Ab840A6874c94A3988EE316f; // PFZR  Address 
+        
+        
     }
 
     function _msgData() internal view virtual returns (bytes calldata) {
@@ -512,7 +519,8 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor () {
-        address msgSender = _msgSender();
+        //address msgSender = _msgSender(); // Owner address 
+        address msgSender = _msgSender(); // Owner address 
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
     }
@@ -558,7 +566,7 @@ abstract contract Ownable is Context {
 
 
 
-contract AngelCoin is Context, IERC20, IERC20Metadata, Ownable {
+contract PFZR is Context, IERC20, IERC20Metadata, Ownable {
     using SafeMath for uint256;
     using Address for address;
     
@@ -583,10 +591,10 @@ contract AngelCoin is Context, IERC20, IERC20Metadata, Ownable {
      */
     constructor () {
         
-        _name = "AngelCoin";
-        _symbol = "ANGEL";
+        _name = "PFZER COIN";
+        _symbol = "PFZR";
         _decimals = 18;
-        _totalSupply = 150000000 * 10**(_decimals);
+        _totalSupply = 777000000 * 10**(_decimals);
         _balances[_msgSender()] = _totalSupply;
     }
 

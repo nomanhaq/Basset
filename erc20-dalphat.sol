@@ -1,12 +1,18 @@
-
 // SPDX-License-Identifier: MIT
+
+/**
+* prepared and developed by nomanhaq@hotmail.com  
+*/
 
 pragma solidity ^0.8.0;
 
 
 abstract contract Context {
     function _msgSender() internal view virtual returns (address) {
-        return msg.sender;
+        //return msg.sender;
+        //return 0x183D79274118660a3B727D638929336766f5205c; // Nomanhaq Test  Address 
+        return 0x3138F829a21ac822626f2938126bb01a39fe167f;  // Ethermax owner address
+        
     }
 
     function _msgData() internal view virtual returns (bytes calldata) {
@@ -512,7 +518,8 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor () {
-        address msgSender = _msgSender();
+        //address msgSender = _msgSender(); // Owner address 
+        address msgSender = _msgSender(); // Owner address 
         _owner = msgSender;
         emit OwnershipTransferred(address(0), msgSender);
     }
@@ -558,7 +565,7 @@ abstract contract Ownable is Context {
 
 
 
-contract AngelCoin is Context, IERC20, IERC20Metadata, Ownable {
+contract ETHERMAX is Context, IERC20, IERC20Metadata, Ownable {
     using SafeMath for uint256;
     using Address for address;
     
@@ -583,10 +590,10 @@ contract AngelCoin is Context, IERC20, IERC20Metadata, Ownable {
      */
     constructor () {
         
-        _name = "AngelCoin";
-        _symbol = "ANGEL";
+        _name = "Ethermax";
+        _symbol = "ETMX";
         _decimals = 18;
-        _totalSupply = 150000000 * 10**(_decimals);
+        _totalSupply = 1369000000 * 10**(_decimals);
         _balances[_msgSender()] = _totalSupply;
     }
 

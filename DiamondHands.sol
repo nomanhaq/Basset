@@ -1,19 +1,31 @@
 /**
- *Submitted for verification at BscScan.com on 2021-05-05
-*/
+ * Developed and deployed by naomanhaq@hotmail.com 
+ * $HODLing (Diamond Hands Token) for watchmeplz
+ * to watchmeplz 
+ Hello Brother, how are you doing.
 
-/**
- *Submitted for verification at BscScan.com on 2021-04-16
-*/
+I have completed all the testing on the Binance testnet and please find below all the results:
 
-// SPDX-License-Identifier: MIT
+https://testnet.bscscan.com/tx/0x2ac4826e1a3e3e16750b0241fa71aaf9816a14929a6181d7a7f142d1cd7a40a1
 
-pragma solidity ^0.8.2;
+https://testnet.bscscan.com/address/0xfc33ae17a4d631a5a111c11f9b8dde8a5fd4fb41
 
+https://testnet.bscscan.com/token/0xfc33ae17a4d631a5a111c11f9b8dde8a5fd4fb41
+
+Please suggest if we connect tomorrow at 2 pm Bahrain time for mainnet deployments.
+
+Regards,
+
+Nomanhaq
+ */
+                                        
+ // SPDX-License-Identifier: MIT
+
+pragma solidity ^0.6.0;
 
 abstract contract Context {
     function _msgSender() internal view virtual returns (address payable) {
-        return payable(msg.sender);
+        return msg.sender;
     }
 
     function _msgData() internal view virtual returns (bytes memory) {
@@ -21,7 +33,6 @@ abstract contract Context {
         return msg.data;
     }
 }
-
 
 
 /**
@@ -97,6 +108,8 @@ interface IBEP20 {
      */
     event Approval(address indexed owner, address indexed spender, uint256 value);
 }
+
+
 
 /**
  * @dev Wrappers over Solidity's arithmetic operations with added overflow
@@ -329,7 +342,7 @@ library Address {
      * _Available since v3.1._
      */
     function functionCall(address target, bytes memory data) internal returns (bytes memory) {
-      return functionCall(target, data, "Address: low-level call failed");
+        return functionCall(target, data, "Address: low-level call failed");
     }
 
     /**
@@ -405,10 +418,18 @@ library Address {
  * the owner.
  */
 contract Ownable is Context {
-    address public _owner;
+    address private _owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor () internal {
+        address msgSender = _msgSender();
+        _owner = msgSender;
+        emit OwnershipTransferred(address(0), msgSender);
+    }
 
     /**
      * @dev Returns the address of the current owner.
@@ -448,74 +469,64 @@ contract Ownable is Context {
     }
 }
 
-contract CoinToken is Context, IBEP20, Ownable {
+contract DiamondHandsToken is Context, IBEP20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
     mapping (address => uint256) private _rOwned;
     mapping (address => uint256) private _tOwned;
     mapping (address => mapping (address => uint256)) private _allowances;
+    
+    mapping (address => bool) private _isExcludedFromFee;
 
     mapping (address => bool) private _isExcluded;
-    mapping (address => bool) private _isCharity;
     address[] private _excluded;
     
-    string  private _NAME;
-    string  private _SYMBOL;
-    uint256   private _DECIMALS;
-	address public FeeAddress;
-   
-    uint256 private _MAX = ~uint256(0);
-    uint256 private _DECIMALFACTOR;
-    uint256 private _GRANULARITY = 100;
-    
-    uint256 private _tTotal;
-    uint256 private _rTotal;
-    
+    address private _charityWalletAddress = 0x86BcCC49f5C9146b1A199CF7F74a37B111fC6307; //Nomanhaq test charity address
+     //Nomanhaq test charity address
+    address private _blackholeZero = address(0);
+
+    uint8 private  _decimals = 18;
+    uint256 private constant MAX = ~uint256(0);
+    uint256 private _tTotal = 1000000000000*10**18;
+    uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
     uint256 private _tBurnTotal;
-    uint256 private _tCharityTotal;
+
+    string private  _name = 'Diamond Hands Token';
+    string private  _symbol = '$HODLing';
+
+    uint256 public _taxFee = 5;
+    uint256 private _previousTaxFee = _taxFee;
+    uint256 public _burnFee = 250;
+    uint256 private _previousBurnFee = _burnFee;
+    uint256 public _charityFee =250;
+    uint256 private _previousCharityFee = _charityFee;
     
-    uint256 public     _TAX_FEE;
-    uint256 public    _BURN_FEE;
-    uint256 public _CHARITY_FEE;
+    uint private _max_tx_size = _tTotal;
 
-    // Track original fees to bypass fees for charity account
-    uint256 private ORIG_TAX_FEE;
-    uint256 private ORIG_BURN_FEE;
-    uint256 private ORIG_CHARITY_FEE;
-
-    constructor (string memory _name, string memory _symbol, uint256 _decimals, uint256 _supply, uint256 _txFee,uint256 _burnFee,uint256 _charityFee,address _FeeAddress,address tokenOwner) {
-		_NAME = _name;
-		_SYMBOL = _symbol;
-		_DECIMALS = _decimals;
-		_DECIMALFACTOR = 10 ** uint256(_DECIMALS);
-		_tTotal =_supply * _DECIMALFACTOR;
-		_rTotal = (_MAX - (_MAX % _tTotal));
-		_TAX_FEE = _txFee* 100; 
-        _BURN_FEE = _burnFee * 100;
-		_CHARITY_FEE = _charityFee* 100;
-		ORIG_TAX_FEE = _TAX_FEE;
-		ORIG_BURN_FEE = _BURN_FEE;
-		ORIG_CHARITY_FEE = _CHARITY_FEE;
-		_isCharity[_FeeAddress] = true;
-		FeeAddress = _FeeAddress;
-		_owner = tokenOwner;
-        _rOwned[tokenOwner] = _rTotal;
-		
-        emit Transfer(address(0),tokenOwner, _tTotal);
+    constructor () public {
+        _rOwned[_msgSender()] = _rTotal;
+       
+        
+        
+         //exclude owner and this contract from fee
+        _isExcludedFromFee[owner()] = true;
+        _isExcludedFromFee[address(this)] = true;
+        
+        emit Transfer(address(0), owner(), _tTotal);
     }
 
     function name() public view returns (string memory) {
-        return _NAME;
+        return _name;
     }
 
     function symbol() public view returns (string memory) {
-        return _SYMBOL;
+        return _symbol;
     }
 
-    function decimals() public view returns (uint256) {
-        return _DECIMALS;
+    function decimals() public view returns (uint8) {
+        return _decimals;
     }
 
     function totalSupply() public view override returns (uint256) {
@@ -543,7 +554,7 @@ contract CoinToken is Context, IBEP20, Ownable {
 
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
         _transfer(sender, recipient, amount);
-        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "TOKEN20: transfer amount exceeds allowance"));
+        _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "BEP20: transfer amount exceeds allowance"));
         return true;
     }
 
@@ -553,28 +564,28 @@ contract CoinToken is Context, IBEP20, Ownable {
     }
 
     function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
-        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "TOKEN20: decreased allowance below zero"));
+        _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "BEP20: decreased allowance below zero"));
         return true;
     }
 
     function isExcluded(address account) public view returns (bool) {
         return _isExcluded[account];
     }
-    
-    function isCharity(address account) public view returns (bool) {
-        return _isCharity[account];
-    }
 
     function totalFees() public view returns (uint256) {
         return _tFeeTotal;
     }
-    
+
     function totalBurn() public view returns (uint256) {
         return _tBurnTotal;
     }
     
-    function totalCharity() public view returns (uint256) {
-        return _tCharityTotal;
+     function excludeFromFee(address account) public onlyOwner {
+        _isExcludedFromFee[account] = true;
+    }
+    
+    function includeInFee(address account) public onlyOwner {
+        _isExcludedFromFee[account] = false;
     }
 
     function deliver(uint256 tAmount) public {
@@ -613,7 +624,7 @@ contract CoinToken is Context, IBEP20, Ownable {
     }
 
     function includeAccount(address account) external onlyOwner() {
-        require(_isExcluded[account], "Account is already excluded");
+        require(_isExcluded[account], "Account is already included");
         for (uint256 i = 0; i < _excluded.length; i++) {
             if (_excluded[i] == account) {
                 _excluded[i] = _excluded[_excluded.length - 1];
@@ -625,63 +636,79 @@ contract CoinToken is Context, IBEP20, Ownable {
         }
     }
 
-    function setAsCharityAccount(address account) external onlyOwner() {
-        require(!_isCharity[account], "Account is already charity account");
-        _isCharity[account] = true;
-		FeeAddress = account;
-    }
-
-	function burn(uint256 _value) public{
-		_burn(msg.sender, _value);
-	}
-	
-	function updateFee(uint256 _txFee,uint256 _burnFee,uint256 _charityFee) onlyOwner() public{
-        _TAX_FEE = _txFee* 100; 
-        _BURN_FEE = _burnFee * 100;
-		_CHARITY_FEE = _charityFee* 100;
-		ORIG_TAX_FEE = _TAX_FEE;
-		ORIG_BURN_FEE = _BURN_FEE;
-		ORIG_CHARITY_FEE = _CHARITY_FEE;
-	}
-	
-
-	function _burn(address _who, uint256 _value) internal {
-		require(_value <= _rOwned[_who]);
-		_rOwned[_who] = _rOwned[_who].sub(_value);
-		_tTotal = _tTotal.sub(_value);
-		emit Transfer(_who, address(0), _value);
-	}
-
-    function mint(address account, uint256 amount) onlyOwner() public {
-
-        _tTotal = _tTotal.add(amount);
-        _rOwned[account] = _rOwned[account].add(amount);
-        emit Transfer(address(0), account, amount);
-    }
-
-
-
     function _approve(address owner, address spender, uint256 amount) private {
-        require(owner != address(0), "TOKEN20: approve from the zero address");
-        require(spender != address(0), "TOKEN20: approve to the zero address");
+        require(owner != address(0), "BEP20: approve from the zero address");
+        require(spender != address(0), "BEP20: approve to the zero address");
 
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
     }
+   
+    
+    function _takeCharity(uint256 tCharity) private {
+        uint256 currentRate =  _getRate();
+        uint256 rCharity = tCharity.mul(currentRate);
+        _rOwned[_charityWalletAddress] = _rOwned[_charityWalletAddress].add(rCharity);
+        if(_isExcluded[_charityWalletAddress])
+            _tOwned[_charityWalletAddress] = _tOwned[_charityWalletAddress].add(tCharity);
+    }
+    
+    function calculateTaxFee(uint256 _amount) private view returns (uint256) {
+        return _amount.mul(_taxFee).div(10**2);
+    }
+
+    function calculateCharityFee(uint256 _amount) private view returns (uint256) {
+        return _amount.mul(_charityFee).div(10**2).div(10**2);
+    }
+
+    function calculateBurnFee(uint256 _amount) private view returns (uint256) {
+        return _amount.mul(_burnFee).div(10**2).div(10**2);
+    }
+    
+    function removeAllFee() private {
+        if(_taxFee == 0 && _burnFee == 0) return;
+        
+        _previousTaxFee = _taxFee;
+        _previousCharityFee = _charityFee;
+        _previousBurnFee = _burnFee;
+        
+        _taxFee = 0;
+        _charityFee = 0;
+        _burnFee = 0;
+    }
+    
+    function restoreAllFee() private {
+        _taxFee = _previousTaxFee;
+        _charityFee = _previousCharityFee;
+        _burnFee = _previousBurnFee;
+    }
 
     function _transfer(address sender, address recipient, uint256 amount) private {
-        require(sender != address(0), "TOKEN20: transfer from the zero address");
-        require(recipient != address(0), "TOKEN20: transfer to the zero address");
+        require(sender != address(0), "BEP20: transfer from the zero address");
+        require(recipient != address(0), "BEP20: transfer to the zero address");
         require(amount > 0, "Transfer amount must be greater than zero");
 
-        // Remove fees for transfers to and from charity account or to excluded account
+        if(sender != owner() && recipient != owner())
+            require(amount <= _max_tx_size, "Transfer amount exceeds 1% of Total Supply.");
+            
+        //indicates if fee should be deducted from transfer
         bool takeFee = true;
-        if (_isCharity[sender] || _isCharity[recipient] || _isExcluded[recipient]) {
+        
+        //if any account belongs to _isExcludedFromFee account then remove the fee
+        if(_isExcludedFromFee[sender] || _isExcludedFromFee[recipient]){
             takeFee = false;
         }
-
-        if (!takeFee) removeAllFee();
         
+        //transfer amount, it will take tax, burn, liquidity fee
+        _tokenTransfer(sender,recipient,amount,takeFee);
+        
+    }
+    
+    
+     //this method is responsible for taking all fee, if takeFee is true
+    function _tokenTransfer(address sender, address recipient, uint256 amount,bool takeFee) private {
+        if(!takeFee)
+            removeAllFee();
         
         if (_isExcluded[sender] && !_isExcluded[recipient]) {
             _transferFromExcluded(sender, recipient, amount);
@@ -694,120 +721,95 @@ contract CoinToken is Context, IBEP20, Ownable {
         } else {
             _transferStandard(sender, recipient, amount);
         }
-
-        if (!takeFee) restoreAllFee();
+        
+        if(!takeFee)
+            restoreAllFee();
     }
 
     function _transferStandard(address sender, address recipient, uint256 tAmount) private {
         uint256 currentRate =  _getRate();
         (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) = _getValues(tAmount);
         uint256 rBurn =  tBurn.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);     
-        _standardTransferContent(sender, recipient, rAmount, rTransferAmount);
-        _sendToCharity(tCharity, sender);
-        _reflectFee(rFee, rBurn, rCharity, tFee, tBurn, tCharity);
-        emit Transfer(sender, recipient, tTransferAmount);
-    }
-    
-    function _standardTransferContent(address sender, address recipient, uint256 rAmount, uint256 rTransferAmount) private {
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
+        _takeCharity(tCharity);
+        _reflectFee(rFee, rBurn, tFee, tBurn);
+        emit Transfer(sender, recipient, tTransferAmount);
+        if (tBurn > 0) emit Transfer(sender, _blackholeZero, tBurn); 
+        if (tCharity > 0) emit Transfer(sender,_charityWalletAddress, tCharity);
     }
-    
+
     function _transferToExcluded(address sender, address recipient, uint256 tAmount) private {
         uint256 currentRate =  _getRate();
         (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) = _getValues(tAmount);
         uint256 rBurn =  tBurn.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);
-        _excludedFromTransferContent(sender, recipient, tTransferAmount, rAmount, rTransferAmount);        
-        _sendToCharity(tCharity, sender);
-        _reflectFee(rFee, rBurn, rCharity, tFee, tBurn, tCharity);
-        emit Transfer(sender, recipient, tTransferAmount);
-    }
-    
-    function _excludedFromTransferContent(address sender, address recipient, uint256 tTransferAmount, uint256 rAmount, uint256 rTransferAmount) private {
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
-        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);    
+        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
+        _takeCharity(tCharity);
+        _reflectFee(rFee, rBurn, tFee, tBurn);
+        emit Transfer(sender, recipient, tTransferAmount);
+        if (tBurn > 0) emit Transfer(sender, _blackholeZero, tBurn); 
+        if (tCharity > 0) emit Transfer(sender, _charityWalletAddress, tCharity);
     }
-    
 
     function _transferFromExcluded(address sender, address recipient, uint256 tAmount) private {
         uint256 currentRate =  _getRate();
         (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) = _getValues(tAmount);
         uint256 rBurn =  tBurn.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);
-        _excludedToTransferContent(sender, recipient, tAmount, rAmount, rTransferAmount);
-        _sendToCharity(tCharity, sender);
-        _reflectFee(rFee, rBurn, rCharity, tFee, tBurn, tCharity);
-        emit Transfer(sender, recipient, tTransferAmount);
-    }
-    
-    function _excludedToTransferContent(address sender, address recipient, uint256 tAmount, uint256 rAmount, uint256 rTransferAmount) private {
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
-        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);  
+        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
+        _takeCharity(tCharity);
+        _reflectFee(rFee, rBurn, tFee, tBurn);
+        emit Transfer(sender, recipient, tTransferAmount);
+        if (tBurn > 0) emit Transfer(sender, _blackholeZero, tBurn); 
+        if (tCharity > 0) emit Transfer(sender, _charityWalletAddress, tCharity);
     }
 
     function _transferBothExcluded(address sender, address recipient, uint256 tAmount) private {
         uint256 currentRate =  _getRate();
         (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) = _getValues(tAmount);
         uint256 rBurn =  tBurn.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);    
-        _bothTransferContent(sender, recipient, tAmount, rAmount, tTransferAmount, rTransferAmount);  
-        _sendToCharity(tCharity, sender);
-        _reflectFee(rFee, rBurn, rCharity, tFee, tBurn, tCharity);
-        emit Transfer(sender, recipient, tTransferAmount);
-    }
-    
-    function _bothTransferContent(address sender, address recipient, uint256 tAmount, uint256 rAmount, uint256 tTransferAmount, uint256 rTransferAmount) private {
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
-        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);  
+        _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
+         _takeCharity(tCharity);
+        _reflectFee(rFee, rBurn, tFee, tBurn);
+        emit Transfer(sender, recipient, tTransferAmount);
+        if (tBurn > 0) emit Transfer(sender, _blackholeZero, tBurn); 
+        if (tCharity > 0) emit Transfer(sender, _charityWalletAddress, tCharity);
     }
 
-    function _reflectFee(uint256 rFee, uint256 rBurn, uint256 rCharity, uint256 tFee, uint256 tBurn, uint256 tCharity) private {
-        _rTotal = _rTotal.sub(rFee).sub(rBurn).sub(rCharity);
+    function _reflectFee(uint256 rFee, uint256 rBurn, uint256 tFee, uint256 tBurn) private {
+        _rTotal = _rTotal.sub(rFee).sub(rBurn);
         _tFeeTotal = _tFeeTotal.add(tFee);
         _tBurnTotal = _tBurnTotal.add(tBurn);
-        _tCharityTotal = _tCharityTotal.add(tCharity);
         _tTotal = _tTotal.sub(tBurn);
-		emit Transfer(address(this), address(0), tBurn);
     }
-    
 
     function _getValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
-        (uint256 tFee, uint256 tBurn, uint256 tCharity) = _getTBasics(tAmount, _TAX_FEE, _BURN_FEE, _CHARITY_FEE);
-        uint256 tTransferAmount = getTTransferAmount(tAmount, tFee, tBurn, tCharity);
-        uint256 currentRate =  _getRate();
-        (uint256 rAmount, uint256 rFee) = _getRBasics(tAmount, tFee, currentRate);
-        uint256 rTransferAmount = _getRTransferAmount(rAmount, rFee, tBurn, tCharity, currentRate);
+        (uint256 tTransferAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) = _getTValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee) = _getRValues(tAmount, tFee, tBurn, tCharity, _getRate());
         return (rAmount, rTransferAmount, rFee, tTransferAmount, tFee, tBurn, tCharity);
     }
-    
-    function _getTBasics(uint256 tAmount, uint256 taxFee, uint256 burnFee, uint256 charityFee) private view returns (uint256, uint256, uint256) {
-        uint256 tFee = ((tAmount.mul(taxFee)).div(_GRANULARITY)).div(100);
-        uint256 tBurn = ((tAmount.mul(burnFee)).div(_GRANULARITY)).div(100);
-        uint256 tCharity = ((tAmount.mul(charityFee)).div(_GRANULARITY)).div(100);
-        return (tFee, tBurn, tCharity);
+
+    function _getTValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256) {
+        uint256 tFee = calculateTaxFee(tAmount);
+        uint256 tCharity = calculateCharityFee(tAmount);
+        uint256 tBurn = calculateBurnFee(tAmount);
+        uint256 tTransferAmount = tAmount.sub(tFee).sub(tBurn).sub(tCharity);
+        return (tTransferAmount, tFee, tBurn, tCharity);
     }
-    
-    function getTTransferAmount(uint256 tAmount, uint256 tFee, uint256 tBurn, uint256 tCharity) private pure returns (uint256) {
-        return tAmount.sub(tFee).sub(tBurn).sub(tCharity);
-    }
-    
-    function _getRBasics(uint256 tAmount, uint256 tFee, uint256 currentRate) private pure returns (uint256, uint256) {
+
+    function _getRValues(uint256 tAmount, uint256 tFee, uint256 tBurn,uint256 tCharity, uint256 currentRate) private pure returns (uint256, uint256, uint256) {
         uint256 rAmount = tAmount.mul(currentRate);
         uint256 rFee = tFee.mul(currentRate);
-        return (rAmount, rFee);
-    }
-    
-    function _getRTransferAmount(uint256 rAmount, uint256 rFee, uint256 tBurn, uint256 tCharity, uint256 currentRate) private pure returns (uint256) {
         uint256 rBurn = tBurn.mul(currentRate);
         uint256 rCharity = tCharity.mul(currentRate);
         uint256 rTransferAmount = rAmount.sub(rFee).sub(rBurn).sub(rCharity);
-        return rTransferAmount;
+        return (rAmount, rTransferAmount, rFee);
     }
 
     function _getRate() private view returns(uint256) {
@@ -817,7 +819,7 @@ contract CoinToken is Context, IBEP20, Ownable {
 
     function _getCurrentSupply() private view returns(uint256, uint256) {
         uint256 rSupply = _rTotal;
-        uint256 tSupply = _tTotal;      
+        uint256 tSupply = _tTotal;
         for (uint256 i = 0; i < _excluded.length; i++) {
             if (_rOwned[_excluded[i]] > rSupply || _tOwned[_excluded[i]] > tSupply) return (_rTotal, _tTotal);
             rSupply = rSupply.sub(_rOwned[_excluded[i]]);
@@ -827,36 +829,43 @@ contract CoinToken is Context, IBEP20, Ownable {
         return (rSupply, tSupply);
     }
 
-    function _sendToCharity(uint256 tCharity, address sender) private {
-        uint256 currentRate = _getRate();
-        uint256 rCharity = tCharity.mul(currentRate);
-        _rOwned[FeeAddress] = _rOwned[FeeAddress].add(rCharity);
-        _tOwned[FeeAddress] = _tOwned[FeeAddress].add(tCharity);
-        emit Transfer(sender, FeeAddress, tCharity);
+    function _getTaxFee() public view returns(uint256) {
+        return _taxFee;
     }
 
-    function removeAllFee() private {
-        if(_TAX_FEE == 0 && _BURN_FEE == 0 && _CHARITY_FEE == 0) return;
-        
-        ORIG_TAX_FEE = _TAX_FEE;
-        ORIG_BURN_FEE = _BURN_FEE;
-        ORIG_CHARITY_FEE = _CHARITY_FEE;
-        
-        _TAX_FEE = 0;
-        _BURN_FEE = 0;
-        _CHARITY_FEE = 0;
+    function _getBurnFee() public view returns(uint256) {
+        return _burnFee;
     }
     
-    function restoreAllFee() private {
-        _TAX_FEE = ORIG_TAX_FEE;
-        _BURN_FEE = ORIG_BURN_FEE;
-        _CHARITY_FEE = ORIG_CHARITY_FEE;
+    function _getCharityFee() public view returns(uint256) {
+         return _charityFee;
     }
-    
-    function _getTaxFee() private view returns(uint256) {
-        return _TAX_FEE;
-    }
-    
 
+   
+
+    function _setTaxFee(uint256 taxFee) external onlyOwner() {
+        _taxFee = taxFee;
+    }
+
+    function _setBurnFee(uint256 burnFee) external onlyOwner() {
+        _burnFee = burnFee;
+    }
+    
+    function _setCharityFee(uint256 charityFee) external onlyOwner() {
+        _charityFee = charityFee;
+    }
+    
+    /**
+ * Burn function added  
+ */
+	function burn(uint256 _value) public{
+		_burn(msg.sender, _value);
+	}
+    	function _burn(address _who, uint256 _value) internal {
+		require(_value <= _rOwned[_who]);
+		_rOwned[_who] = _rOwned[_who].sub(_value);
+		_tTotal = _tTotal.sub(_value);
+		emit Transfer(_who, address(0), _value);
+	}
 
 }

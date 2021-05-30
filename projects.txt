@@ -1,0 +1,47 @@
+19/08/2021
+https://testnet.bscscan.com/address/0x84a4a14a163c4a996efcb2eaf71288e36e8480a1 // LIMON on testnet 
+https://bscscan.com/address/0x712C0a4659a7C31A81FD5A47a2D83c63A07d7D06 // LIMON on mainnet 
+
+https://rinkeby.etherscan.io/tx/0xe59da900d7248c641539718f8e825387f07bf63004755a4f4a819a1ac5437713 // Bezos Clown-Market Clone 
+
+
+21/05/2021
+
+https://bscscan.com/tx/0xd7a9440c846153519bfc92be48e92ff442a9afe657ea483f45e25c32f1e6a819
+
+22/05/2021
+
+https://etherscan.io/tx/0xaaa7417b0ef70df888f6a81b48e9e071e4e5e5f5da207104210f9ee78ffb2414
+
+23/05/2021
+https://boobfood.charity/
+https://bscscan.com/address/0x3e78a2ea82d7dab1ac66504ca3f72d19569e0f99#code
+
+24/05/2021
+https://bscscan.com/tx/0xc2fd2706e6aa963545d5b67eb5321a2a1c14bde6d53b882fad980af2749ce72f
+https://bscscan.com/tx/0x122a64aec42b41f27fd4ba283a5dc58ba0b51f6cb53ad0cff64f51888cdabeee
+https://bscscan.com/tx/0xdf1f28a53b6ef19535437eb59544d6a48500a72d97cac13d36d4c38c65f7ad0f
+
+POLAR 
+https://bscscan.com/address/0x0469f02c3810ddac080aa444c05eef1a365a0f6d#readContract 
+
+25/05/2021
+https://bscscan.com/token/0xf4ff89c1eeaa367afdba470e1ed069acfaf03d15
+
+26/05/2021
+https://etherscan.io/tx/0xdfbe574fdb76fa7dcde9a8e0b9284098e29e5afa059266b906c1c02a04414833
+
+https://etherscan.io/tx/0x9c5b5cb68f2f6068c38db1dfea962c7e3387bf92ea133e1b94a5e55292cb7eb6
+27/05/2021
+https://bscscan.com/tx/0x29d8691c15f84f1688788440ef470335e2ac47f22cf91cdcb2b6340a073982fc
+
+28/05/2021
+https://bscscan.com/address/0x980940eb3f4985364d1147870fcb9c301be2b563#writeContract
+https://bscscan.com/token/0x980940eb3f4985364d1147870fcb9c301be2b563
+
+29/05/2021
+https://bscscan.com/address/0xd5a44f4c0436816c0057ce99a8dac429950f57b6
+https://bscscan.com/tx/0xbc7d867d354f0c5806fc0593da5746bf319bb8d00aa993381e24e010fb02e970
+
+30/05/2021
+https://bscscan.com/token/0x58f7ccc1b963d3eed1994778b802dd286c940f11
