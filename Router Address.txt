@@ -6,3 +6,8 @@
 
 
 0x0000000000000000000000000000000000000000 // Burn Address
+
+
+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 (github token address)
+
+
