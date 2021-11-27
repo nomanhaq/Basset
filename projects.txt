@@ -45,3 +45,413 @@ https://bscscan.com/tx/0xbc7d867d354f0c5806fc0593da5746bf319bb8d00aa993381e24e01
 
 30/05/2021
 https://bscscan.com/token/0x58f7ccc1b963d3eed1994778b802dd286c940f11
+https://bscscan.com/address/0x94241428e0e36df628e0c2485bc0e158a5da3362#code 
+(Contract with
+   5% fee auto add to the liquidity pool to locked forever when selling
+   4% fee auto distribute to all holders
+   1% fee auto moved to dev wallet
+   5% lotto fee )
+
+https://bscscan.com/address/0x94241428e0e36df628e0c2485bc0e158a5da3362#code
+
+31/05/2021
+Instgram
+https://bscscan.com/tx/0xffa51be102f23ae4dae078c1a2ecb5c834eee7a39c9eb0fb1d88c63dbefffdea
+Krypto
+https://bscscan.com/tx/0x8d9664bc0ecede6c48c436a92178e717b43d6dd33cf442d0cf89414f978a0274
+
+https://bscscan.com/tx/0x0e6e28f9c9a7d820da098cbda0ad6c8fefab720714113531485610e2b9434a7a
+
+ZTEG1
+https://bscscan.com/tx/0xc566c7cd6436a311758babc80dde33cf34c4f46081ea2bc4ae4e8431ffc0ce34
+
+01/06/2021
+Buldog
+https://bscscan.com/address/0x9d4bb643a6318286a9515fdc554e27f262ab0aed
+
+on Etherscan Sphynx Cat (SPHYNX)
+https://etherscan.io/tx/0xe635cbd38e3e4589ca0a29ea9b1e16637964b7b5a60f4725c8d32443d5ccf296
+https://etherscan.io/address/0xe28bf0ba3e5b3108fcd5c7f2a296f84040f565ae
+0xe28bf0bA3E5B3108Fcd5C7F2a296F84040F565ae
+
+02/06/2021
+https://bscscan.com/address/0x953ee19ba69db22cd2f1ded88c92b1e1a77becfe (ERC 20 Token)
+
+https://etherscan.io/tx/0xa0613de21979509bfa3743657b546738e48f3fdfe7b19fd6b35f7ea5a17cf3f2
+
+03/06/2021
+https://bscscan.com/tx/0x45dc93d3a61874f73f70c1defb46a4954afc5de1c54f34d2d1f7dac78ba36d4e
+
+
+0xcf8c23cf17bb5815d5705a15486fa83805415625
+
+06062021
+0x12700Bd167B97835A49dd7EbB2e9d687E7CA39B5
+https://bscscan.com/address/0x12700bd167b97835a49dd7ebb2e9d687e7ca39b5#writeContract
+
+https://bscscan.com/address/0xd7bf683cad197f4f869678cddc345b38b483d8e4#code
+HODL (HODL)
+https://www.bscscan.com/address/0x0E3EAF83Ea93Abe756690C62c72284943b96a6Bc#code
+
+Secured MoonRat Token (SMRAT)
+https://bscscan.com/address/0x68590a47578e5060a29fd99654f4556dbfa05d10#writeContract
+ Battle (BATTLE)
+https://bscscan.com/address/0x18e314c6a29b114aa5b32bf0d7db8b9f18354142#readContract
+
+07/06/2021
+https://www.bscscan.com/address/0xde24547de2993ed460033c9990e2ad43304bb6ab#code
+
+https://bscscan.com/tx/0xc86e9ad299edf3a73af444fc6b94bf435bb3502623d5ad10b4e793d74fd23d98
+https://bscscan.com/address/0xa4065be41f5827954efb56c9687c969a659a6ce1#code
+
+09/06/2021
+https://etherscan.io/tx/0x0aab4566a2e4906c3754c8a8d878fe37579a77367fb38a8c8499b6b7d6fb397d
+https://etherscan.io/address/0x462a3cfc494b05781c31ca9abf425925dfb595a5#code
+
+https://bscscan.com/address/0x4cffc41646f45400ea6869b0449f23b8cb5c9b90#writeContract
+10/06/2021
+
+https://bscscan.com/tx/0x974c4fd3d8e9a5f361675881e164bb6a50510d646f85f95cb7aa37c26ab9527a
+
+0xB764a9EAA8385739eBCDD4ed7DBFc68eFFf9D9b9
+0xB764a9EAA8385739eBCDD4ed7DBFc68eFFf9D9b9
+https://etherscan.io/address/0x84c3fde71ce96b301f7c41386f76541de53c3de1#code
+
+
+12/06/2021
+ByteGold
+https://bscscan.com/token/0xf9e99aaf94c3c6fa64f3c4eb0e9d86000b7f93cf // wrong contract
+https://bscscan.com/tx/0x41d1e491f499dfe96b2c6efe06f43a6f0b3af6a4a7227c0a1dc423186311a3cd
+
+
+https://testnet.bscscan.com/address/0x22044facabcd205f54f49c2ac525a0c29e7694d4#readContract
+
+
+https://etherscan.io/tx/0x2ee9af8a00ab21e776a39f5c8d29677976382c75402ef9b8f66f7d22b3b5bbc8
+https://etherscan.io/address/0xcd4d9f8aed9613bd1eed24212b703ad7b3ccd0df
+
+14/06/2021
+Test deployment on mainnet 
+https://bscscan.com/token/0xc060fdcad5f4e8ea9b3d6b649493167672a1caef
+15/06/2021
+https://bscscan.com/address/0x9282e61d6a1ec8caaf9e7d53538562b609e2fdac#code
+https://bscscan.com/address/0x528d7da692865c426305525d8bb9aa3ef9b4a80a#code
+
+16/06/2021
+https://etherscan.io/token/0x22e65b5531ce8bbb98560a2d82f8650bdba1f202
+
+
+https://bscscan.com/address/0x9030644284a585fbe6ae5bf00247282f64b36f07#code
+
+Sperm contract 
+https://bscscan.com/tx/0x58acc4fc7838e6c6fb801141a9f558275fd1db897351fbd21115c250cdab4081
+ZTEG1
+https://bscscan.com/tx/0x99dad5dbd26253f31dd83af348b72a26618f7350443bc27f3b34e96f18e1ba71
+
+https://bscscan.com/token/0x18707b1b189900598a7237e775263713c3234a2c#readContract
+
+https://bscscan.com/token/0x429748b972f3ee27cbd0959d2167209527db07fe
+
+Hype token 
+0x429748b972f3ee27cbd0959d2167209527db07fe
+https://bscscan.com/token/0x8c9d8f33bc58d10aa66783be186335aaf0c3df4e
+
+https://bscscan.com/tx/0x885eb879063628b73844d986d36eacd61b708adeb5f8afe805ef2f9688f49a8c
+
+https://etherscan.io/tx/0x4ce860fe015ab2c47d24a8ad5b7811de8926421015f9dda55151ff37a546ed75
+https://etherscan.io/address/0xa979a248e545e4439dacb9f4b57561eb8e3bd635#code
+
+
+FEELME
+0x8Dca03146b7952B7838f387B0C1b5218099Ca115
+https://bscscan.com/address/0x96ae3cf9a024f8fcb48adc510634afee79bb2326#code (Unvarfied)
+https://bscscan.com/address/0x8dca03146b7952b7838f387b0c1b5218099ca115#readContract
+
+INUMAX
+https://etherscan.io/address/0x799631f24e54d6483a8f820a0c06226fd122086e#writeContract
+
+25062021
+https://bscscan.com/address/0x71af47caeb287a6e5e2c162889a7ef146c4e522b
+
+https://bscscan.com/address/0xc822ed8e9b8222ded3b7d08a6326bbeea246e9c8#writeContract
+
+29062021
+$FANTASY (FANTASY)
+https://bscscan.com/address/0xbac8e0377e4d31b6a5eb2d349dd611ce5c25bec5#writeContract
+https://bscscan.com/token/0x629eea117632a14ed8ba97c0deee345757741209
+
+https://dxsale.app/app/v2_9/defipresale?saleID=308&chain=BSC
+https://bscscan.com/token/0xd713583d6746580bfa0f9ed20239546c0b25353d
+
+
+
+01072021
+https://bscscan.com/token/0xd174778ef04d957618bf0f89ea95664e7848fd74
+
+https://bscscan.com/token/0x8f919c52990d3ca425ae1d3759ada739a3fd9ee3
+https://bscscan.com/token/0x0563b065c53cc50aa3bc9816d46f07548b02ca3c
+
+0x629Eea117632A14ed8ba97C0Deee345757741209
+
+https://bscscan.com/address/0x418944e6db696b0fa443d1ccc05de8fbe46e6889
+
+https://bscscan.com/tx/0xb2cdf22a70faa7549d24dbf59f8ef12c812c73934ede5e4ccd3839f4067d0e6b
+
+https://bscscan.com/address/0x55654df0005b2916b21a2ca5232c6768ce86e24b#readContract
+
+Name: Happy Doge
+Symbol: HADO
+Token Address: 0x55654DF0005B2916b21A2ca5232c6768Ce86e24b
+Shareable Presale Link: https://dxsale.app/app/v2_9/defipresale?saleID=379&chain=BSC
+Status: Running
+
+Flashloan 
+https://testnet.bscscan.com/address/0x40aa5d5853620886a60a16813b6fe463f9eb18a2#code
+
+Tiki Token / MEESEEKS (MEESEEKS)
+https://bscscan.com/address/0xBc08d487894A5dE88ff6a5dA4526799043bEDFDF#code
+https://testnet.bscscan.com/address/0xb44cec72d880dc57735b4440a18d4865fae5a38a#code
+
+https://etherscan.io/token/0xdb851a41906ef8abed4b37b2e8d5a0c8dfb4900c
+
+TITAN
+https://www.dextools.io/app/uniswap/pair-explorer/0xe7a9d43131e0fec4896e5bf12cb0c9f844a0dbd8
+https://etherscan.io/address/0xdb851a41906ef8abed4b37b2e8d5a0c8dfb4900c
+
+PayYourTutionFunds
+https://etherscan.io/tx/0x39b9d0d84869413db24b6a6b831f65ccb140bd9bfea82929eca7d8a5c99ea08a
+https://etherscan.io/address/0x86abc083a7fbaba4be30a78d9a28ae1b726bcb46#writeContract
+
+https://bscscan.com/token/0x4551f4c96fb23745a4a52af6d95070667c1e12d8
+
+HTEG
+https://bscscan.com/address/0xeb4d0167edd0df99110e9b83f74e021d51f1c8c5
+https://www.dextools.io/app/pancakeswap/pair-explorer/0x31d63ebcc58c68e03f5fd4c4d7ba947dc16aa60e
+ZTEG2Test
+https://testnet.bscscan.com/token/0x9c03bf339b05cda8a505b7c5110c03eb975fe5b5#balances
+ZTEG2
+https://bscscan.com/token/0xdc952b3303d8af2f6cdec6f01411cf6a2dfe34f3
+
+FLUFFYDIAMOND (FLFD) - With dividend rewards
+https://bscscan.com/token/0x34cb0ff47b7dfadbf940cd3560620ac71822920d
+
+$TIME
+https://bscscan.com/token/0x6d3171243a8ad86dcd43645241e12cc101db0a19 (Multi wallet)
+
+https://testnet.bscscan.com/address/0xfe442739f67e20bfcbfaa34ca2b0eeeb197f8145#readContract
+
+Blue Lovee (ERC21)
+https://etherscan.io/address/0x09e2372f00645cafe8ed0322051f60b0e85aef12#code
+
+https://etherscan.io/tx/0xba68d0cacb0b820a186369539c01bdcd4976bd679ab3abdbd9bddc1ed252cf9e
+https://etherscan.io/address/0x1efbf2c1f843e83f69ed2aba689061c25e19f572#code
+
+Goliath Mountain Ledger Token (GMLT)
+https://etherscan.io/address/0xe1ec03aaa8ffa785193968b370f9c7e36a35f8eb#code (Received suvinior token)
+0xecdf8cf60f102967e2645467ac5c040211bac95d (Received suvinior token)
+
+FeedPups (Multi addresses)
+https://testnet.bscscan.com/address/0x2fe56a5a5f4c8d0ef7e9d1f772e9c9fcdee9aa32#code
+
+ MADAGASCAR ($TIME) (Multiple Addresses)
+https://bscscan.com/address/0xaae8442648e0e3ec4181f9134e6b881c0e656c18#readContract
+
+Botkilla (mainnet Noman)
+https://bscscan.com/token/0xaa2a92b980dd03a36eac0ffcd2022898b5a76b69
+
+(Token with burn, charity and tax fees without liquidity)
+https://bscscan.com/address/0x5610bf2bf5abe5750bdbce311631dee2afa2cd24#readContract
+
+ZTEGX
+0x3dbc4f4437a71d9766b1a6999d149512fa6e2de0
+https://www.dextools.io/app/pancakeswap/pair-explorer/0xeb9ae09818d7516340c38fb2808f95b1b2e73bec
+
+0xB04547bCBf59e20DF16bDCDB77145bf36aE545Ee
+
+marketing address
+
+0x68f65169a26d542AC7066C4Ca142a87909329904
+
+charity address
+
+..Owner address
+
+0x279764958BDb0E90c815278a01FaBb8606Ecdd71
+
+https://bscscan.com/token/0x196048ccda27c22f32e59480731c813d52a05e09
+
+Botkila (with hided information)
+https://testnet.bscscan.com/address/0xc71c96dbb8c982ee7357066e9ff3d4ccf160b999#readContract
+
+TREXBITS (TRXB)
+https://etherscan.io/address/0x2d7abeed17e4104f704853c5f0792976da13f26c
+
+https://bscscan.com/address/0xddaccd273353580e4772d0438af028f186bfcdd4#code
+
+https://bscscan.com/address/0x6d4004006f933db851ca183f0f53b3499b97c2e3#readContract
+
+ShibaFlex
+https://etherscan.io/address/0x0d2dcc301facbbf85c154ad2788402d7bf91403a
+
+ Feed Pups (FUPS)
+https://bscscan.com/address/0x4c837e8be042f925859b228c26856baf3e0a4a63#writeContract
+
+https://etherscan.io/token/0x6da56ea63fe7ad53bf1205f30991d8cec40e557d
+
+DogiBooty
+https://bscscan.com/address/0x5d90847bc6ca094b5724dce45992346784da5731
+
+Billion
+https://etherscan.io/address/0x0239d3a3485ec54511bee9d77d92695e443bf060
+
+RothGold
+https://bscscan.com/address/0x07660d7990c6cfa3d26fba7a1a78df0b0acffc92#code
+
+
+https://etherscan.io/address/0x4bb3312fc23949de25ffe4238e3a77c0ab01a1b2
+
+Testnet zteg
+https://rinkeby.etherscan.io/address/0xa70c4ac348399c3f8b6d5edc8e4c6a7119b1e442#code
+actual contract
+https://www.dextools.io/app/uniswap/pair-explorer/0xa5cdb3b2f62e73a1e1fa22b338ae12b27e446cf6
+
+Another for zteg
+https://etherscan.io/address/0x3b8e13057a5809df947231fde42c8976e3466aa7#code
+https://www.dextools.io/app/uniswap/pair-explorer/0xfb0a670e0565f52deff06340e9deec63c6f88b73
+wrong amount 
+https://etherscan.io/address/0xbedab8672961b6da4ec7fcfacbfe07884690a3cd#readContract
+
+FU Coin
+https://bscscan.com/token/0xfa7baabb6b1303703bd271210891abb68f4ff4ff
+
+https://testnet.bscscan.com/token/0xc6d66b80c052916cbcf1d83610e8bdaba67f4937
+
+https://bscscan.com/token/0x4f1bb2c1588836d5350f3640363728e301ca4e9e
+https://bscscan.com/token/0x6c27ceb1a55fb150b0ff2123fb4fc951b4d2d01e
+
+wrong one
+https://bscscan.com/token/0x0cefcf4df465ad8552489584b112532c89bf2d85
+correct one
+https://bscscan.com/token/0x3b216ac8032dad91558325c84d6ebf9e0b0c2c69
+
+Not Safemoon code 
+https://github.com/NotSafeMoon/NotSafeMoon-Contract/blob/main/NotSafeMoon.sol
+
+https://etherscan.io/address/0x8883a44a9e7b72f7dd083e2e7322d5b7d30e36f8#code
+https://etherscan.io/address/0x37b95c9013ec38d2a6f25358099f67be5b7130e4#code
+
+
+AZADI
+https://bscscan.com/token/0x0eb54d31c6be8bc9a6e3f3097c44a2ba43046e22
+
+TEC-BlockChain
+https://rinkeby.etherscan.io/address/0xee3f92821258df2b254bc907e526d6377bef0fdc#code
+https://etherscan.io/token/0xee3f92821258df2b254bc907e526d6377bef0fdc
+
+FileTeam
+https://etherscan.io/address/0xe4ab72cc8bdadc554d4ceb6a657bc23b19e45f12#code
+
+MoneyShot
+https://bscscan.com/address/0xe92efe46449ed65eafa2877b96dce73c607c094d#code
+
+BankInu (Noman mainnet)
+https://www.dextools.io/app/bsc/pair-explorer/0xfc5ce03219f052fada274a443a5059e1c65ea487
+
+Income Token
+https://bscscan.com/address/0x3a91a88ef4bb813bb99ef5a745bcb56e3a3b403b#code
+
+https://dxsale.app/app/v3/defipresale?saleID=370&chain=BSC
+
+
+SteveCoin
+https://etherscan.io/address/0x3799b61fc926737141beff4564259b5481c5ecb7#code
+
+MoneyShot$
+https://www.dextools.io/app/bsc/pair-explorer/0x609b0dc8434270e527750f9622a19462d085a445
+
+BLovee
+https://bscscan.com/address/0x09e2372f00645cafe8ed0322051f60b0e85aef12#code
+
+BLovee Depolyed 
+https://bscscan.com/token/0x67ae55cad03c3ac57c022794b83b63617fb02989
+https://www.dextools.io/app/bsc/pair-explorer/0xb13772fd002dddb83da222158e8f1432739c14a8
+
+https://bscscan.com/address/0xe186b4895d6e7f46438d7dfacd260970c849212c#code
+
+FESToken
+https://bscscan.com/address/0x488c56dbfd3a5512cb9d06470adc1361d188ed33#writeContract
+
+https://dxsale.app/app/v3/defipresale?saleID=572&chain=BSC
+
+LOGAN
+https://etherscan.io/address/0xf552f29319b052ae3a02994e35d1ccde4e30998f#code
+
+IsalChain
+https://etherscan.io/address/0x9462cba1c53fbbe5741297035831caf9508e135f#codee
+
+Content Coin
+https://bscscan.com/address/0xc121e028483c474aa430b8d0c5e97a469e52726d#code
+
+HADO 21million
+https://bscscan.com/address/0xac87ea6b5858bf0d873816980b1c17e38690d022#comments
+
+Rebase contract for chinese 
+https://bscscan.com/address/0x78c0452e7b56299eb2ab0cb7374817db4f096aaa
+https://bscscan.com/address/0x507231AB9C1C50a6cA4c77D65c25853E71810184#readContract0cB7374817Db4F096AAA#readContract
+https://bscscan.com/address/0x507231AB9C1C50a6cA4c77D65c25853E71810184#readContract
+Need to add main contract router pair address and 
+WBNB-BUSD Address 
+https://bscscan.com/address/0x57a7f2f8179f1002B3F29DEe7b5326F2089D0d25#readContract
+
+SoalrX (ADA Reward)
+https://bscscan.com/address/0x43ba4ef5c5606ace0c859a5f52c286a1eb5ad165#code
+testnet transactions 
+https://testnet.bscscan.com/tx/0x3c1851bb710e2ac320d43eb5f5bf44b3f93275150ae81becfdd5dc3f41c5009d
+
+ERC21 recommended code
+https://etherscan.io/address/0x2d7abeed17e4104f704853c5f0792976da13f26c#code
+
+TREXBITS ERC20
+https://etherscan.io/address/0xa24878f6718d92106923a01d0a7f6ce972b77771#code
+
+https://etherscan.io/token/0xc42acb46bec0a5cf3153be7f79e5405aabdedff6
+
+DigiDuck 
+https://rinkeby.etherscan.io/address/0x975a0b817dfc8cb25c26549cdc676aac7d10d95c#code
+
+New Build Token (NBT) 
+https://etherscan.io/address/0xf39551e2118f92e312172c6e10a777482d8cbe86
+
+Rebase Contract on Testnet
+https://testnet.bscscan.com/address/0x65a4034c803d3a48b0d6043910a7ed2fbfe6e49a#readContract
+Master
+https://testnet.bscscan.com/address/0x462236b4088648ce994c5d07677e210752107827#code
+Oracle
+https://testnet.bscscan.com/address/0x86e5769c258b4f4f06d00ab8be86899d38002ca6#
+    address private constant _wbnb = 0x094616F0BdFB0b526bD735Bf66Eca0Ad254ca81F;// testnet 
+    //address private constant _wbnb = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; 
+    address private constant _busd = 0x8301F2213c0eeD49a7E28Ae4c3e91722919B8B47; // testnet 
+    //address private constant _busd = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
+GRV_BNB = 0x2e7d0c2215ac29a0c2eac61fcb424a16727c35d7 = Fiele # 23 
+WBNB_BUSD = 0x254b6be481169fe28bc3ed34bdf6a40ae4fe07a4 = For Testnet 
+
+https://bscscan.com/token/0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c BTC on mainnet 
+https://solidity.finance/audits/GoesUpHigher/
+https://github.com/goesuphigher/contracts
+
+MamaMiyaCoin (standard) 
+https://bscscan.com/address/0xc16ef2a186fc8cf03d8c430e51a5ad38cbc8013b#code
+
+Sheesh Token 
+https://etherscan.io/address/0x5f223dacb2babe9d3cd747298f8f8479cc7023de#code
+
+
+https://bscscan.com/address/0xd099990bc62b3caf38f0f20b280bb400f67e92d0#code
+
+DoxxedSanata
+https://bscscan.com/address/0x278fcdf9ac688dee921eb3b775a1a76de4b56805#writeContract
+https://bscscan.com/address/0xd60c9248c9df2289ba48a111c84cec90df0aef0a#code
+
+MoonBoy
+https://etherscan.io/address/0xc750adefc7b147d06dc6e70082a51c689f915057#code
+

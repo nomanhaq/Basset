@@ -1,17 +1,22 @@
 /**
- *Prepare and develped by nomanhaq@hotmail.com
+ *Submitted for verification at BscScan.com on 2021-06-03
 */
 
-// SPDX-License-Identifier: Unlicensed
+// SPDX-License-Identifier: MIT
 
 /**
 
-   #MOONFROG
-
-   3% fee auto add to the liquidity pool to locked forever when selling
-   3% fee auto distribute to all holders
-   3% fee auto moved to charity wallet
-
+                ▄▄███▄▄·███████ ██████  ███████ ██████  ███    ███ 
+                ██      ██      ██   ██ ██      ██   ██ ████  ████ 
+                ███████ ███████ ██████  █████   ██████  ██ ████ ██ 
+                     ██      ██ ██      ██      ██   ██ ██  ██  ██ 
+                ███████ ███████ ██      ███████ ██   ██ ██      ██ 
+                  ▀▀▀                                              
+                                                   
+   #$SPERM Tokonomics
+   4% fee auto add to the liquidity pool to locked forever when selling
+   4% fee auto distribute to all holders
+   2% fee auto moved to Marketing wallet
  */
 
 pragma solidity ^0.8.3;
@@ -533,7 +538,8 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor () {
-        _owner = 0xD109fc566401ca57445810b9A3C187876cf44544; // Nomanhaq Address for test 
+        _owner = _msgSender(); 
+        //_owner = 0xD109fc566401ca57445810b9A3C187876cf44544; // Nomanhaq Address for test 
         emit OwnershipTransferred(address(0), _owner);
     }
 
@@ -777,7 +783,7 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract MoonFrog is Context, IERC20, Ownable {
+contract $SPERM is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -790,25 +796,25 @@ contract MoonFrog is Context, IERC20, Ownable {
     mapping (address => bool) private _isExcluded;
     address[] private _excluded;
 
-   // address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Charity address
-    address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Burn Address
+   // address private _marketingWalletAddress = 0x0000000000000000000000000000000000000000; // marketing address
+    address private _marketingWalletAddress = 0x0000000000000000000000000000000000000000; // Burn Address
     
     
    
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 1000000000000 * 10**9;
+    uint256 private _tTotal = 1000000000000000 * 10**18;
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "MOONFROG";
-    string private _symbol = "FROG";
-    uint8 private _decimals = 9;
+    string private _name = "SPERM";
+    string private _symbol = "$SPERM";
+    uint8 private _decimals = 18;
     
-    uint256 public _taxFee = 3;
+    uint256 public _taxFee = 4;
     uint256 private _previousTaxFee = _taxFee;
     
-    uint256 public _charityFee = 3;
-    uint256 private _previousCharityFee = _charityFee;
+    uint256 public _marketingFee = 3;
+    uint256 private _previousmarketingFee = _marketingFee;
     uint256 public _liquidityFee = 3;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
@@ -818,8 +824,8 @@ contract MoonFrog is Context, IERC20, Ownable {
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
     
-    uint256 public _maxTxAmount = 5000000 * 10**6 * 10**9;
-    uint256 private numTokensSellToAddToLiquidity = 500000 * 10**6 * 10**9;
+    uint256 public _maxTxAmount = 5000000 *  10**18;
+    uint256 private numTokensSellToAddToLiquidity = 500000 *  10**18;
     
     event MinTokensBeforeSwapUpdated(uint256 minTokensBeforeSwap);
     event SwapAndLiquifyEnabledUpdated(bool enabled);
@@ -839,7 +845,10 @@ contract MoonFrog is Context, IERC20, Ownable {
         _rOwned[owner()] = _rTotal;
         
         //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);// BSC mainnet
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap
+        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xD99D1c33F9fC3444f8101754aBC46c52416550D1);// BSC testnet        
+        
+         //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);// BSC mainnet
+        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap
          // Create a uniswap pair for this new token
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
@@ -962,13 +971,13 @@ contract MoonFrog is Context, IERC20, Ownable {
         }
     }
         function _transferBothExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);        
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
@@ -985,8 +994,8 @@ contract MoonFrog is Context, IERC20, Ownable {
         _taxFee = taxFee;
     }
 
-    function setCharityFeePercent(uint256 charityFee) external onlyOwner() {
-        _charityFee = charityFee;
+    function setmarketingFeePercent(uint256 marketingFee) external onlyOwner() {
+        _marketingFee = marketingFee;
     }
     
     function setLiquidityFeePercent(uint256 liquidityFee) external onlyOwner() {
@@ -1013,25 +1022,25 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
     function _getValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256, uint256, uint256, uint256) {
-        (uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getTValues(tAmount);
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee) = _getRValues(tAmount, tFee, tLiquidity, tCharity, _getRate());
-        return (rAmount, rTransferAmount, rFee, tTransferAmount, tFee, tLiquidity, tCharity);
+        (uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getTValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee) = _getRValues(tAmount, tFee, tLiquidity, tmarketing, _getRate());
+        return (rAmount, rTransferAmount, rFee, tTransferAmount, tFee, tLiquidity, tmarketing);
     }
 
     function _getTValues(uint256 tAmount) private view returns (uint256, uint256, uint256, uint256) {
         uint256 tFee = calculateTaxFee(tAmount);
         uint256 tLiquidity = calculateLiquidityFee(tAmount);
-        uint256 tCharity = calculateCharityFee(tAmount);
-        uint256 tTransferAmount = tAmount.sub(tFee).sub(tLiquidity).sub(tCharity);
-        return (tTransferAmount, tFee, tLiquidity, tCharity);
+        uint256 tmarketing = calculatemarketingFee(tAmount);
+        uint256 tTransferAmount = tAmount.sub(tFee).sub(tLiquidity).sub(tmarketing);
+        return (tTransferAmount, tFee, tLiquidity, tmarketing);
     }
 
-    function _getRValues(uint256 tAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity, uint256 currentRate) private pure returns (uint256, uint256, uint256) {
+    function _getRValues(uint256 tAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing, uint256 currentRate) private pure returns (uint256, uint256, uint256) {
         uint256 rAmount = tAmount.mul(currentRate);
         uint256 rFee = tFee.mul(currentRate);
         uint256 rLiquidity = tLiquidity.mul(currentRate);
-        uint256 rCharity = tCharity.mul(currentRate);
-        uint256 rTransferAmount = rAmount.sub(rFee).sub(rLiquidity).sub(rCharity);
+        uint256 rmarketing = tmarketing.mul(currentRate);
+        uint256 rTransferAmount = rAmount.sub(rFee).sub(rLiquidity).sub(rmarketing);
         return (rAmount, rTransferAmount, rFee);
     }
 
@@ -1060,12 +1069,12 @@ contract MoonFrog is Context, IERC20, Ownable {
             _tOwned[address(this)] = _tOwned[address(this)].add(tLiquidity);
     }
     
-    function _takeCharity(uint256 tCharity) private {
+    function _takemarketing(uint256 tmarketing) private {
         uint256 currentRate =  _getRate();
-        uint256 rCharity = tCharity.mul(currentRate);
-        _rOwned[_charityWalletAddress] = _rOwned[_charityWalletAddress].add(rCharity);
-        if(_isExcluded[_charityWalletAddress])
-            _tOwned[_charityWalletAddress] = _tOwned[_charityWalletAddress].add(tCharity);
+        uint256 rmarketing = tmarketing.mul(currentRate);
+        _rOwned[_marketingWalletAddress] = _rOwned[_marketingWalletAddress].add(rmarketing);
+        if(_isExcluded[_marketingWalletAddress])
+            _tOwned[_marketingWalletAddress] = _tOwned[_marketingWalletAddress].add(tmarketing);
     }
     
     function calculateTaxFee(uint256 _amount) private view returns (uint256) {
@@ -1074,8 +1083,8 @@ contract MoonFrog is Context, IERC20, Ownable {
         );
     }
 
-    function calculateCharityFee(uint256 _amount) private view returns (uint256) {
-        return _amount.mul(_charityFee).div(
+    function calculatemarketingFee(uint256 _amount) private view returns (uint256) {
+        return _amount.mul(_marketingFee).div(
             10**2
         );
     }
@@ -1090,17 +1099,17 @@ contract MoonFrog is Context, IERC20, Ownable {
         if(_taxFee == 0 && _liquidityFee == 0) return;
         
         _previousTaxFee = _taxFee;
-        _previousCharityFee = _charityFee;
+        _previousmarketingFee = _marketingFee;
         _previousLiquidityFee = _liquidityFee;
         
         _taxFee = 0;
-        _charityFee = 0;
+        _marketingFee = 0;
         _liquidityFee = 0;
     }
     
     function restoreAllFee() private {
         _taxFee = _previousTaxFee;
-        _charityFee = _previousCharityFee;
+        _marketingFee = _previousmarketingFee;
         _liquidityFee = _previousLiquidityFee;
     }
     
@@ -1240,36 +1249,35 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
     function _transferStandard(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
     function _transferToExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _tOwned[recipient] = _tOwned[recipient].add(tTransferAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);           
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
     function _transferFromExcluded(address sender, address recipient, uint256 tAmount) private {
-        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tCharity) = _getValues(tAmount);
+        (uint256 rAmount, uint256 rTransferAmount, uint256 rFee, uint256 tTransferAmount, uint256 tFee, uint256 tLiquidity, uint256 tmarketing) = _getValues(tAmount);
         _tOwned[sender] = _tOwned[sender].sub(tAmount);
         _rOwned[sender] = _rOwned[sender].sub(rAmount);
         _rOwned[recipient] = _rOwned[recipient].add(rTransferAmount);   
         _takeLiquidity(tLiquidity);
-        _takeCharity(tCharity);
+        _takemarketing(tmarketing);
         _reflectFee(rFee, tFee);
         emit Transfer(sender, recipient, tTransferAmount);
     }
 
 }
-

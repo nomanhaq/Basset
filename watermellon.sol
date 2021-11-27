@@ -1,16 +1,28 @@
 /**
- *Prepare and develped by nomanhaq@hotmail.com
+For  ---- andres707 ---- 
+Name: WATERMELON COIN
+Symbol: WTMC
+Decimal: 9
+Supply: 1.000.000.000.000.000
+
+Owners Address: 0x210D04eF50525b0CFe9fb1E720b243577c0Edcf4
+Wallet project: 0xd4a8c332a74C5DDf936a804369C1EC625aD7222f
+
+100% supply = 1,000,000,000,000,000
+Token Value = 0.0000000001
+
+Tax 10% of transactions (Liquidity 5% | Holders 4% (Removing the liquidity wallet) | Project and charity 1% )
 */
 
-// SPDX-License-Identifier: Unlicensed
+// SPDX-License-Identifier: MIT
 
 /**
 
-   #MOONFROG
+   #WATERMELON COIN
 
-   3% fee auto add to the liquidity pool to locked forever when selling
-   3% fee auto distribute to all holders
-   3% fee auto moved to charity wallet
+   5% fee auto add to the liquidity pool 
+   4% fee auto distribute to all holders
+   1% fee auto moved to Project and charity wallet
 
  */
 
@@ -318,6 +330,7 @@ library SafeMath {
 abstract contract Context {
     function _msgSender() internal view virtual returns (address) {
         return msg.sender;
+        // return 0x210D04eF50525b0CFe9fb1E720b243577c0Edcf4; // owner address 
     }
 
     function _msgData() internal view virtual returns (bytes calldata) {
@@ -533,7 +546,7 @@ abstract contract Ownable is Context {
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
     constructor () {
-        _owner = 0xD109fc566401ca57445810b9A3C187876cf44544; // Nomanhaq Address for test 
+        _owner = _msgSender(); 
         emit OwnershipTransferred(address(0), _owner);
     }
 
@@ -777,7 +790,22 @@ interface IUniswapV2Router02 is IUniswapV2Router01 {
     ) external;
 }
 
-contract MoonFrog is Context, IERC20, Ownable {
+/**
+For  ---- andres707 ---- 
+Name: WATERMELON COIN
+Symbol: WTMC
+Decimal: 9
+Supply: 1.000.000.000.000.000
+
+Owners Address: 0x210D04eF50525b0CFe9fb1E720b243577c0Edcf4
+Wallet project: 0xd4a8c332a74C5DDf936a804369C1EC625aD7222f
+
+100% supply = 1,000,000,000,000,000
+Token Value = 0.0000000001
+
+Tax 10% of transactions (Liquidity 5% | Holders 4% (Removing the liquidity wallet) | Project and charity 1% )
+*/
+contract WTMC is Context, IERC20, Ownable {
     using SafeMath for uint256;
     using Address for address;
 
@@ -790,26 +818,26 @@ contract MoonFrog is Context, IERC20, Ownable {
     mapping (address => bool) private _isExcluded;
     address[] private _excluded;
 
-   // address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Charity address
-    address private _charityWalletAddress = 0x0000000000000000000000000000000000000000; // Burn Address
+
+    address private _charityWalletAddress = 0xd4a8c332a74C5DDf936a804369C1EC625aD7222f; // Project Address
     
     
    
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 1000000000000 * 10**9;
+    uint256 private _tTotal = 1000000000000000 * 10**9;
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
-    string private _name = "MOONFROG";
-    string private _symbol = "FROG";
+    string private _name = "WATERMELON COIN";
+    string private _symbol = "WTMC";
     uint8 private _decimals = 9;
     
-    uint256 public _taxFee = 3;
+    uint256 public _taxFee = 4;
     uint256 private _previousTaxFee = _taxFee;
     
-    uint256 public _charityFee = 3;
+    uint256 public _charityFee = 1;
     uint256 private _previousCharityFee = _charityFee;
-    uint256 public _liquidityFee = 3;
+    uint256 public _liquidityFee = 5;
     uint256 private _previousLiquidityFee = _liquidityFee;
 
     IUniswapV2Router02 public immutable uniswapV2Router;
@@ -818,8 +846,8 @@ contract MoonFrog is Context, IERC20, Ownable {
     bool inSwapAndLiquify;
     bool public swapAndLiquifyEnabled = true;
     
-    uint256 public _maxTxAmount = 5000000 * 10**6 * 10**9;
-    uint256 private numTokensSellToAddToLiquidity = 500000 * 10**6 * 10**9;
+    uint256 public _maxTxAmount = 5000000 *  10**9;
+    uint256 private numTokensSellToAddToLiquidity = 500000 *  10**9;
     
     event MinTokensBeforeSwapUpdated(uint256 minTokensBeforeSwap);
     event SwapAndLiquifyEnabledUpdated(bool enabled);
@@ -839,7 +867,10 @@ contract MoonFrog is Context, IERC20, Ownable {
         _rOwned[owner()] = _rTotal;
         
         //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);// BSC mainnet
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap
+        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xD99D1c33F9fC3444f8101754aBC46c52416550D1);// BSC testnet        
+        
+         //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x10ED43C718714eb63d5aA57B78B54704E256024E);// BSC mainnet
+        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);// Ethereum mainnet for uniswap
          // Create a uniswap pair for this new token
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
             .createPair(address(this), _uniswapV2Router.WETH());
@@ -1272,4 +1303,3 @@ contract MoonFrog is Context, IERC20, Ownable {
     }
 
 }
-
